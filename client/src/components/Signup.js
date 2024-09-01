@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-
+const url='https://crudwithredux.onrender.com';
 const Signup = () => {
   const [firstname, setFirstame] = useState('');
   const [lastname, setLastame] = useState('');
@@ -13,7 +13,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/signup', { email, password, firstname,lastname, phone });
+      const res = await axios.post(url +'/api/signup', { email, password, firstname,lastname, phone });
       dispatch({ type: 'signup', payload: res.data });
       window.alert('Form submit successfully');
             setFirstame('');
