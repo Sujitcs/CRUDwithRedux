@@ -1,7 +1,8 @@
 import axios from 'axios';
+const url='https://crudwithredux.onrender.com';
 export const signup =async (userData) => {
   try {
-    const res=axios.post('http://localhost:5000/api/signup', userData)
+    const res=axios.post(url +'/api/signup', userData)
     return res.data;
   } catch (error) { 
   }    
@@ -9,7 +10,7 @@ export const signup =async (userData) => {
 
 export const signin =async (userData) => {
   try {
-    const res= await axios.post('http://localhost:5000/api/signin', userData);
+    const res= await axios.post(url +'/api/signin', userData);
     return res.data
   } catch (error) {
     
@@ -18,7 +19,7 @@ export const signin =async (userData) => {
 
 export const fetchUsers = async (token) => {
   try {
-    const res= await axios.get('http://localhost:5000/api/list', {
+    const res= await axios.get(url +'/api/list', {
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
