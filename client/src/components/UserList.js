@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import '../App.css';
+const url='https://crudwithredux.onrender.com';
 const UserList = () => {
   const token = useSelector((state) => state.auth.token);
   const [users, setUsers] = useState([]);
@@ -10,7 +11,7 @@ const UserList = () => {
 
   const fetchData = async (token) => {
     try {
-      const res = await axios.get('http://localhost:5000/api/list', {
+      const res = await axios.get(url +'/api/list', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(res.data);
@@ -41,7 +42,7 @@ const UserList = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/edit/${editingUser._id}`, editForm, {
+      await axios.put(url +`/api/edit/${editingUser._id}`, editForm, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchData(token);
@@ -53,7 +54,7 @@ const UserList = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/delete/${userId}`, {
+      await axios.delete(url +`/api/delete/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchData(token);
